@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AJ_encoded — Arock Jeberson J</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0d0f12;
+    --ink-soft:#15181d;
+    --parchment:#f1e8d6;
+    --amber:#d9a441;
+    --green:#6fe3b4;
+    --line:#2a2e35;
+    --muted:#9aa0a8;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--parchment);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+  }
+  ::selection{background:var(--amber);color:var(--ink);}
+
+  a{color:inherit;}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(13,15,18,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;padding:16px 28px;}
+  .logo{font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:0.5px;font-size:15px;}
+  .logo span{color:var(--green);}
+  .navlinks{display:flex;gap:28px;font-family:'JetBrains Mono',monospace;font-size:13px;}
+  .navlinks a{text-decoration:none;color:var(--muted);transition:color .2s;}
+  .navlinks a:hover{color:var(--amber);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:120px 0 90px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--green);
+    font-size:13px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:18px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .hero-eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);}
+  .hero h1{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(46px,7vw,84px);
+    line-height:1.02;
+    margin:0 0 8px;
+    color:var(--parchment);
+  }
+  .hero h1 em{font-style:italic;color:var(--amber);font-weight:500;}
+  .hero .sub{
+    font-family:'JetBrains Mono',monospace;
+    font-size:17px;
+    color:var(--muted);
+    margin-top:22px;
+    max-width:620px;
+  }
+  .hero .sub .cursor{
+    display:inline-block;width:9px;height:18px;background:var(--green);
+    margin-left:2px;vertical-align:-3px;animation:blink 1s steps(2) infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+  .role-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px;}
+  .pill{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    border:1px solid var(--line);
+    padding:7px 14px;
+    border-radius:100px;
+    color:var(--muted);
+  }
+  .pill.music{border-color:rgba(217,164,65,0.4);color:var(--amber);}
+  .pill.tech{border-color:rgba(111,227,180,0.4);color:var(--green);}
+
+  /* ---------- DUALITY / ABOUT ---------- */
+  .duality{padding:90px 0;border-bottom:1px solid var(--line);}
+  .duality-head{margin-bottom:50px;}
+  .section-label{
+    font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);
+    text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;
+  }
+  .duality h2{
+    font-family:'Fraunces',serif;font-size:clamp(30px,4vw,44px);font-weight:600;margin:0;
+  }
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:4px;overflow:hidden;}
+  .panel{padding:44px 38px;position:relative;}
+  .panel.lyric{
+    background:linear-gradient(180deg,rgba(217,164,65,0.06),transparent);
+    border-right:1px solid var(--line);
+  }
+  .panel.code{
+    background:linear-gradient(180deg,rgba(111,227,180,0.05),transparent);
+  }
+  .panel-tag{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px;}
+  .panel.lyric .panel-tag{color:var(--amber);}
+  .panel.code .panel-tag{color:var(--green);}
+  .panel p.flavor{
+    font-family:'Fraunces',serif;font-style:italic;font-size:21px;line-height:1.5;color:var(--parchment);margin:0 0 22px;
+  }
+  .panel ul{list-style:none;margin:0;padding:0;font-family:'JetBrains Mono',monospace;font-size:13.5px;color:var(--muted);}
+  .panel ul li{padding:7px 0;border-top:1px dashed var(--line);}
+  .panel ul li:first-child{border-top:none;}
+  .panel ul li::before{content:"// ";color:var(--green);}
+  .panel.lyric ul li::before{content:"♪ ";color:var(--amber);}
+
+  @media(max-width:760px){.split{grid-template-columns:1fr;}.panel.lyric{border-right:none;border-bottom:1px solid var(--line);}}
+
+  /* ---------- TIMELINE / EDUCATION ---------- */
+  .timeline{padding:90px 0;border-bottom:1px solid var(--line);}
+  .tl-item{
+    display:grid;grid-template-columns:160px 1fr;gap:28px;padding:28px 0;border-top:1px solid var(--line);
+  }
+  .tl-item:first-of-type{border-top:none;}
+  .tl-date{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--green);}
+  .tl-body h3{font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin:0 0 6px;color:var(--parchment);}
+  .tl-body p{margin:0;color:var(--muted);font-size:14.5px;}
+  @media(max-width:600px){.tl-item{grid-template-columns:1fr;gap:8px;}}
+
+  /* ---------- SKILLS GRID ---------- */
+  .skills{padding:90px 0;border-bottom:1px solid var(--line);}
+  .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:40px;}
+  .skill-cell{background:var(--ink);padding:26px 24px;}
+  .skill-cell h4{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);margin:0 0 14px;
+  }
+  .skill-cell ul{list-style:none;margin:0;padding:0;font-size:14px;color:var(--parchment);}
+  .skill-cell ul li{padding:5px 0;}
+
+  /* ---------- ACHIEVEMENTS ---------- */
+  .achievements{padding:90px 0;border-bottom:1px solid var(--line);}
+  .ach-list{margin-top:40px;display:flex;flex-direction:column;}
+  .ach-row{
+    display:grid;grid-template-columns:28px 1fr auto;gap:18px;align-items:baseline;
+    padding:18px 0;border-top:1px solid var(--line);font-size:14.5px;
+  }
+  .ach-row:first-child{border-top:none;}
+  .ach-row .mark{font-family:'JetBrains Mono',monospace;color:var(--green);}
+  .ach-row .label{color:var(--parchment);}
+  .ach-row .when{font-family:'JetBrains Mono',monospace;color:var(--muted);font-size:12.5px;white-space:nowrap;}
+
+  /* ---------- LANGUAGES ---------- */
+  .languages{padding:60px 0;border-bottom:1px solid var(--line);}
+  .lang-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px;}
+  .lang-chip{
+    font-family:'JetBrains Mono',monospace;font-size:13px;border:1px solid var(--line);padding:9px 16px;border-radius:3px;color:var(--muted);
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact{padding:110px 0 100px;text-align:center;}
+  .contact h2{
+    font-family:'Fraunces',serif;font-size:clamp(34px,6vw,58px);font-weight:600;margin:0 0 24px;
+  }
+  .contact h2 em{color:var(--amber);font-style:italic;}
+  .contact .lines{
+    font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--muted);margin-bottom:36px;
+  }
+  .contact .lines a{color:var(--green);text-decoration:none;border-bottom:1px dashed var(--green);}
+  .cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+  .btn{
+    font-family:'JetBrains Mono',monospace;font-size:13.5px;padding:14px 26px;border-radius:3px;text-decoration:none;
+    border:1px solid var(--line);transition:.2s;
+  }
+  .btn.primary{background:var(--amber);color:var(--ink);border-color:var(--amber);font-weight:700;}
+  .btn.primary:hover{background:#e8b65c;}
+  .btn.ghost{color:var(--green);border-color:rgba(111,227,180,0.4);}
+  .btn.ghost:hover{background:rgba(111,227,180,0.08);}
+
+  footer{
+    padding:28px 0;text-align:center;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);border-top:1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">AJ<span>_</span>encoded</div>
+    <div class="navlinks">
+      <a href="#about">about</a>
+      <a href="#education">education</a>
+      <a href="#skills">skills</a>
+      <a href="#achievements">log</a>
+      <a href="#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">status: composing &amp; compiling</div>
+    <h1>Arock Jeberson J<br><em>writes verses,</em> ships code.</h1>
+    <p class="sub">$ whoami<br>&gt; music director &amp; lyricist — AI/ML student — frontend dev — basher<span class="cursor"></span></p>
+    <div class="role-row">
+      <span class="pill music">lyricist</span>
+      <span class="pill music">music director</span>
+      <span class="pill tech">AI &amp; ML student</span>
+      <span class="pill tech">frontend dev</span>
+      <span class="pill tech">byte-bash-blitz basher</span>
+    </div>
+  </div>
+</header>
+
+<section class="duality" id="about">
+  <div class="wrap">
+    <div class="duality-head">
+      <div class="section-label">two scripts, one author</div>
+      <h2>Lyrics and logic, written in the same hand.</h2>
+    </div>
+    <div class="split">
+      <div class="panel lyric">
+        <div class="panel-tag">Verse mode</div>
+        <p class="flavor">"Every melody starts as a stray thought — every chorus, a decision I commit to."</p>
+        <ul>
+          <li>Music direction &amp; lyric writing as AJ_encoded</li>
+          <li>Winner — Shutter Spark, Gala Fest '26 (photography)</li>
+          <li>Cinema criticism &amp; short film making — grade A</li>
+          <li>Telescope handling team, SJC Trichy</li>
+        </ul>
+      </div>
+      <div class="panel code">
+        <div class="panel-tag">Compile mode</div>
+        <p class="flavor">"I'd rather debug a model at 2am than leave a bug unexplained."</p>
+        <ul>
+          <li>B.Tech, Artificial Intelligence and Data Science</li>
+          <li>Frontend: HTML, CSS, problem solving (beginner→growing)</li>
+          <li>Python 2 &amp; 3 — grade O, Linux — grade O</li>
+          <li>byte-bash-blitz basher, SMCE science club</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="timeline" id="education">
+  <div class="wrap">
+    <div class="section-label">education</div>
+    <h2 style="font-family:'Fraunces',serif;font-size:clamp(30px,4vw,44px);font-weight:600;margin:0 0 10px;">The record so far</h2>
+
+    <div class="tl-item">
+      <div class="tl-date">Sep 2025 - Present</div>
+      <div class="tl-body">
+        <h3>B.Tech, Artificial Intelligence and Data Science</h3>
+        <p>Stella Mary's College of Engineering, Kanyakumari District — first year, CGPA 7.333</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Jul 2022 - Apr 2025</div>
+      <div class="tl-body">
+        <h3>B.Sc. Physics</h3>
+        <p>St. Joseph College, Trichy — CGPA 7.5</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Sep 2021 - Apr 2022</div>
+      <div class="tl-body">
+        <h3>Higher Secondary (12th) — Maths with Biology</h3>
+        <p>VKP Hr. Sec. School — 344/600</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skills" id="skills">
+  <div class="wrap">
+    <div class="section-label">stack</div>
+    <h2 style="font-family:'Fraunces',serif;font-size:clamp(30px,4vw,44px);font-weight:600;margin:0;">What I work with</h2>
+    <div class="skill-grid">
+      <div class="skill-cell">
+        <h4>AI / ML</h4>
+        <ul><li>Artificial Intelligence &amp; Data Science fundamentals</li><li>Python (2 &amp; 3)</li><li>Problem solving</li></ul>
+      </div>
+      <div class="skill-cell">
+        <h4>Frontend</h4>
+        <ul><li>HTML</li><li>CSS</li><li>Web development basics</li></ul>
+      </div>
+      <div class="skill-cell">
+        <h4>Systems</h4>
+        <ul><li>Linux</li><li>Computer hardware repair</li><li>3D printing</li></ul>
+      </div>
+      <div class="skill-cell">
+        <h4>Field &amp; craft</h4>
+        <ul><li>Astronomy &amp; star watching</li><li>Telescope handling</li><li>Solar PV installation &amp; maintenance</li></ul>
+      </div>
+      <div class="skill-cell">
+        <h4>Music</h4>
+        <ul><li>Lyric writing</li><li>Music direction</li><li>Cinema criticism &amp; short films</li></ul>
+      </div>
+      <div class="skill-cell">
+        <h4>Collaboration</h4>
+        <ul><li>Teamwork</li><li>GitHub — github.com/arockje-blip</li><li>Wireless communication basics</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="achievements" id="achievements">
+  <div class="wrap">
+    <div class="section-label">changelog</div>
+    <h2 style="font-family:'Fraunces',serif;font-size:clamp(30px,4vw,44px);font-weight:600;margin:0;">Achievements &amp; certifications</h2>
+    <div class="ach-list">
+      <div class="ach-row"><span class="mark">★</span><span class="label">1st place, Innovation Showcase — National Science Day</span><span class="when">05.03.2026</span></div>
+      <div class="ach-row"><span class="mark">★</span><span class="label">1st place, Project Demo — International Science Day</span><span class="when">06.11.2026</span></div>
+      <div class="ach-row"><span class="mark">★</span><span class="label">Winner, Shutter Spark (photography) — Gala Fest '26</span><span class="when">2026</span></div>
+      <div class="ach-row"><span class="mark">✓</span><span class="label">Rookie to Basher Certificate — BE-A-BASHER campaign</span><span class="when">2026</span></div>
+      <div class="ach-row"><span class="mark">✓</span><span class="label">NASA Moon Watch certificate</span><span class="when">01.10.2022</span></div>
+      <div class="ach-row"><span class="mark">✓</span><span class="label">AI Powered Solution Expo certificate</span><span class="when">24.03.2026</span></div>
+      <div class="ach-row"><span class="mark">✓</span><span class="label">National Space Week webinars (5 days)</span><span class="when">2025</span></div>
+      <div class="ach-row"><span class="mark">✓</span><span class="label">Nobel Prize Week webinars</span><span class="when">2025</span></div>
+      <div class="ach-row"><span class="mark">✓</span><span class="label">Poster presentation, Engineer's Day</span><span class="when">25.09.2025</span></div>
+      <div class="ach-row"><span class="mark">✓</span><span class="label">ANU Awareness Programme</span><span class="when">30.11–01.12.2023</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="languages">
+  <div class="wrap">
+    <div class="section-label">languages</div>
+    <div class="lang-row">
+      <span class="lang-chip">English</span>
+      <span class="lang-chip">Tamil</span>
+      <span class="lang-chip">German — beginner</span>
+      <span class="lang-chip">Japanese — beginner</span>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="section-label">get in touch</div>
+    <h2>Let's <em>write</em><br>something together.</h2>
+    <div class="lines">
+      <a href="mailto:arockje@gmail.com">arockje@gmail.com</a> &nbsp;·&nbsp;
+      <a href="tel:+919600764415">+91 96007 64415</a> &nbsp;·&nbsp;
+      Mondaikadu, Kanyakumari, 629252
+    </div>
+    <div class="cta-row">
+      <a class="btn primary" href="mailto:arockje@gmail.com">Send an email</a>
+      <a class="btn ghost" href="https://www.github.com/arockje-blip" target="_blank" rel="noopener">View GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>AJ_encoded — built line by line, like everything else.</footer>
+
+</body>
+</html>
